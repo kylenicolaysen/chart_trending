@@ -25,14 +25,19 @@ class IndexView(generic.ListView):
     def get_queryset(self):
         return Question.objects.filter(pub_date__lte=timezone.now()).order_by('-pub_date')[:5]
 
+def detail(request, question_id):
+    print(request.get_host())
+    question = get_object_or_404(Question, pk = question_id)
+    return render(request, 'polls/detail.html', {'question': question})
+
 # class DetailView(generic.DetailView):
 #     model = Question
 #     template_name = 'polls/detail.html'
 
-def results(request, question_id):
-    print(request.get_host())
-    question = get_object_or_404(Question, pk=question_id)
-    return render(request, 'polls/results.html', {'question': question})
+# def results(request, question_id):
+#     print(request.get_host())
+#     question = get_object_or_404(Question, pk=question_id)
+#     return render(request, 'polls/results.html', {'question': question})
 
 class ResultsView(generic.DetailView):
     model = Question
