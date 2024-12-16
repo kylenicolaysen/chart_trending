@@ -38,7 +38,7 @@ class ResultsView(generic.DetailView):
     model = Question
     template_name = 'polls/results.html'
 
-@csrf_protect
+# @csrf_protect
 def vote(request, question_id):
     print('VOTE HOST: ', request.get_host())
     question = get_object_or_404(Question, pk=question_id)
