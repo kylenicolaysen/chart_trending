@@ -40,7 +40,7 @@ class ResultsView(generic.DetailView):
 
 @csrf_protect
 def vote(request, question_id):
-    print(request.get_host())
+    print('VOTE HOST: ', request.get_host())
     question = get_object_or_404(Question, pk=question_id)
     try:
         selected_choice = question.choice_set.get(pk=request.POST["choice"])
