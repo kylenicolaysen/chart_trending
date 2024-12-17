@@ -36,6 +36,7 @@ ALLOWED_HOSTS = [os.getenv('IP_ADDRESS'), 'charttrending.com', '127.0.0.1']
 
 INSTALLED_APPS = [
     'polls.apps.PollsConfig',
+    'charts.apps.ChartsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
