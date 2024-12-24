@@ -1,1 +1,11 @@
 <h1>SECTOR PERFORMANCE</h1>
+
+<form action="{% url 'charts:generate' %}" method="post">
+    {% csrf_token %}
+    <p>Group Title</p>
+    <input type="text" name="group title" id="group title" value="group title">
+    <input type="text" name="tickers" id="tickers" value="ticker list">
+    <input type="integer" name="number of total days" id="x" value="number of total days">
+    <input type="integer" name="interval" id="y" value="interval">
+    <button type="submit" value="Generate">Submit</button>
+</form> `

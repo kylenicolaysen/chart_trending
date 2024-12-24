@@ -29,7 +29,7 @@ SECRET_KEY = os.getenv('DJANGO_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [os.getenv('IP_ADDRESS'), 'charttrending.com', '127.0.0.1']
+ALLOWED_HOSTS = [os.getenv('IP_ADDRESS'), 'charttrending.com', 'localhost']
 # 'charttrending.com', '127.0.0.1', 'localhost', '137.184.178.103'
 
 # Application definition
@@ -133,4 +133,4 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CSRF_TRUSTED_ORIGINS = ['https://charttrending.com', 'https://*.137.184.178.103', 'https://*.127.0.0.1']
+CSRF_TRUSTED_ORIGINS = ['https://*.charttrending.com', 'https://*.137.184.178.103', 'https://*.127.0.0.1']
