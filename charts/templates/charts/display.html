@@ -1,1 +1,10 @@
 <p>churts</p>
+{% if image_list %}
+    <ul>
+        {% for img in image_list %}
+            <img src="{{img}}" />
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No images gnererrated</p>
+{% endif %}

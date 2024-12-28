@@ -18,8 +18,12 @@ def generate(request):
     group_title = request.POST['group title']
     hist_length = request.POST['number of total days']
     interval = request.POST['interval']
-    main(tickers_list, group_title, hist_length, interval)
-    return HttpResponseRedirect(reverse('charts:chart_display', args=([])))
+    img_list = main(tickers_list, group_title, hist_length, interval)
+    print('IMAGE LIST: ', img_list)
+    request.session['img_list'] = img_list
+    return HttpResponseRedirect(reverse('charts:chart_display'))
 
 def chart_display(request):
-    return render(request, 'charts/display.html', {'image_list': []})
+    print(request)
+    images = request.session.get('img_list', [])
+    return render(request, 'charts/display.html', {'image_list': images})

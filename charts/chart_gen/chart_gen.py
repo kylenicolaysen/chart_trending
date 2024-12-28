@@ -1,6 +1,8 @@
 import requests
 import json
 import pandas as pd
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from datetime import datetime
 import time
@@ -66,7 +68,12 @@ def plot_perf(performance_df_list, group_title, hist_length, performance_length,
     plt.title(f'{title_length} Performance of {group_title} -- {hist_length * -1} Data Points -- {interval} Interval -- {formatted_today}')
     plt.xlabel('Date')
     plt.ylabel('Performance (%)')
+    # print(performance_df_list[0].index[hist_length::interval])
     plt.xticks(performance_df_list[0].index[hist_length::interval], formatted_date_list[hist_length::interval], rotation=45)
+    # print('DATE LIST:', formatted_date_list[hist_length::interval])
+    # print('HIST LENGTH', hist_length)
+    # print(interval)
+    # plt.xticks(formatted_date_list[hist_length::interval], formatted_date_list[hist_length::interval], rotation=45)
     index_list = performance_df_list[0].index.to_list()
     plt.plot(index_list[hist_length:], ([0] * (hist_length*-1)), color='grey', linestyle='--')
     for performance_df in performance_df_list:
@@ -76,32 +83,39 @@ def plot_perf(performance_df_list, group_title, hist_length, performance_length,
     for performance_df in performance_df_list:
         plt.text(maxlim-0.6, performance_df[performance_length][performance_df.index[-1]], performance_df['ticker'][performance_df.index[0]], size=14, color = performance_df['line-color'][performance_df.index[0]], va='center')
     plt.legend(loc='upper left')
-    plt.savefig(f'./charts/chart_gen/outputs/{formatted_today}_{performance_length}_{group_title}.png')
+    file_name = (f'./charts/chart_gen/outputs/{formatted_today}_{performance_length}_{group_title}.png')
+    plt.savefig(file_name)
+    return file_name
     # plt.show()
 
 
 def main(ticker_list, group_title, hist_length, interval):
+    hist_length = int(hist_length)
+    interval = int(interval)
     print('CURRENT WORKING DIRECTORY', os.getcwd())
     perf_data_list = []
     for ticker in ticker_list:
         try:
             performance_data = pd.read_pickle(f'./charts/chart_gen/data/{ticker}_{formatted_today}.pkl')
             print('File Found')
-            if performance_data['date'][performance_data.index[-1]] < formatted_today:
-                print('File Outdated')
-                data = get_data(ticker, formatted_today)
-                performance_data = get_performance(data)
+            # if performance_data['date'][performance_data.index[-1]] < formatted_today:
+            #     print('File Outdated')
+            #     data = get_data(ticker, formatted_today)
+            #     performance_data = get_performance(data)
         except FileNotFoundError:
             print('File Not Found')
             data = get_data(ticker, formatted_today)
-            print('Downloaded data', data)
+            # print('Downloaded data', data)
             performance_data = get_performance(data)
         finally:
             perf_data_list.append(performance_data)
     #five_days one_month six_months
-    plot_perf(perf_data_list, group_title, hist_length, 'five_days', interval)
-    plot_perf(perf_data_list, group_title, hist_length, 'one_month', interval)
-    plot_perf(perf_data_list, group_title, hist_length, 'six_months', interval)
+    img_list = []
+    img_list.append(plot_perf(perf_data_list, group_title, hist_length, 'five_days', interval))
+    img_list.append(plot_perf(perf_data_list, group_title, hist_length, 'one_month', interval))
+    img_list.append(plot_perf(perf_data_list, group_title, hist_length, 'six_months', interval))
+    return img_list
+    
 
 if __name__ == '__main__':
     sector_group_title = 'SPDR Sectors'
