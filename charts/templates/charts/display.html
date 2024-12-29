@@ -1,8 +1,12 @@
-<p>churts</p>
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'charts/style.css' %}">
+
+<a class="nav" href="/">HOME</a>
 {% if image_list %}
     <ul>
         {% for img in image_list %}
-            <img src="{{img}}" />
+            <img src="{% static 'charts/images/' %}{{img}}" />
         {% endfor %}
     </ul>
 {% else %}

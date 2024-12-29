@@ -83,8 +83,8 @@ def plot_perf(performance_df_list, group_title, hist_length, performance_length,
     for performance_df in performance_df_list:
         plt.text(maxlim-0.6, performance_df[performance_length][performance_df.index[-1]], performance_df['ticker'][performance_df.index[0]], size=14, color = performance_df['line-color'][performance_df.index[0]], va='center')
     plt.legend(loc='upper left')
-    file_name = (f'./charts/chart_gen/outputs/{formatted_today}_{performance_length}_{group_title}.png')
-    plt.savefig(file_name)
+    file_name = (f'{formatted_today}_{performance_length}_{group_title}.png')
+    plt.savefig(f'./charts/static/charts/images/{file_name}')
     return file_name
     # plt.show()
 

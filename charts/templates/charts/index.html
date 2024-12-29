@@ -1,11 +1,18 @@
-<h1>SECTOR PERFORMANCE</h1>
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'charts/style.css' %}">
+
+<h1>ChartTrending.com</h1>
 
 <form action="{% url 'charts:generate' %}" method="post">
     {% csrf_token %}
-    <p>Group Title</p>
-    <input type="text" name="group title" id="group title" value="group title">
-    <input type="text" name="tickers" id="tickers" value="ticker list">
-    <input type="integer" name="number of total days" id="x" value="number of total days">
-    <input type="integer" name="interval" id="y" value="interval">
-    <button type="submit" value="Generate">Submit</button>
-</form> `
+    <label for="group title">Group Name: </label>
+    <input type="text" name="group title" id="group title" placeholder="ex: Mag 7, SPDR Sectors, etc">
+    <label for="tickers">Tickers (separated by commas):</label>
+    <input type="text" name="tickers" id="tickers" placeholder="ex: AAPL, MSFT, AMZN">
+    <label for="number of total days">Number of market days</label>
+    <input type="integer" name="number of total days" id="x" value="15">
+    <label for="interval">Interval:</label>
+    <input type="integer" name="interval" id="y" value="1">
+    <button type="submit" value="Generate">Generate Charts</button>
+</form> 
