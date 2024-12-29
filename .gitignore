@@ -4,4 +4,3 @@
 .env
 db.sqlite3
 nohup.out
-/charts/static/charts/images/
