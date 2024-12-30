@@ -6,7 +6,7 @@
 {% if image_list %}
     <ul>
         {% for img in image_list %}
-            <img src="{% static 'charts/images/' %}{{img}}" />
+            <img src="{{ MEDIA_URL }}/media/images/{{ img }}" alt="Dynamic Image">
         {% endfor %}
     </ul>
 {% else %}
