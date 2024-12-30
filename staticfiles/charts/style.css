@@ -1,0 +1,53 @@
+body {
+    margin: 2em;
+    color: #403342;
+    background: #eee4ee;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+h1 {
+    color: #60126d;
+    font-size: 2em;
+    font-family: Verdana, sans-serif;
+    /* font-family: 'Brush Script MT', cursive Verdana, sans-serif; */
+}
+
+img {
+    max-width: 100%;
+    margin-bottom: 1.6em;
+}
+
+a {
+    color: #60126d;
+    font-size: 1.5em;
+    font-family: 'Brush Script MT', cursive Verdana, sans-serif;
+}
+
+button {
+    color: #60126d;
+    border: solid 1px;
+    box-shadow: 2px, 2px, #50125b;
+    background: #ece1ee;
+    padding: 0.2em;
+    font-family: Geneva, Tahoma, sans-serif;
+}
+
+form label, 
+form input {
+    display: block; /* Makes each element occupy its own line */
+}
+
+input {
+    margin-bottom: 1em;
+}
+
+.nav {
+    color: #60126d;
+    font-size: 2em;
+    font-family: Verdana, sans-serif;
+    text-decoration: none;
+}
+
+.nav:hover {
+    text-decoration: underline;
+}

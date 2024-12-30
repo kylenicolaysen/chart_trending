@@ -3,5 +3,9 @@ li a {
 }
 
 body {
-    background: white url("images/background.png") stretch;
+    background: rgb(226, 105, 105) url("images/background.png") stretch;
+}
+
+p {
+    color: darkblue;
 }
