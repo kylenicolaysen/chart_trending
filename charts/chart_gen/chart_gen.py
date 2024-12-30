@@ -9,6 +9,9 @@ import time
 from dotenv import load_dotenv
 import os
 from django.conf import settings
+import logging
+
+logger = logging.getLogger(__name__)
 
 load_dotenv()
 today = datetime.today()
@@ -100,12 +103,14 @@ def main(ticker_list, group_title, hist_length, interval):
     for ticker in ticker_list:
         try:
             performance_data = pd.read_pickle(f'./charts/chart_gen/data/{ticker}_{formatted_today}.pkl')
+            # performance_data = pd.read_picker/
             print('File Found')
             # if performance_data['date'][performance_data.index[-1]] < formatted_today:
             #     print('File Outdated')
             #     data = get_data(ticker, formatted_today)
             #     performance_data = get_performance(data)
         except FileNotFoundError:
+            logger.warning('FILE Not Found')
             print('File Not Found')
             data = get_data(ticker, formatted_today)
             # print('Downloaded data', data)
