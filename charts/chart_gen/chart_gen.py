@@ -48,7 +48,11 @@ def get_performance(df):
     df['five_days'] = five_days
     df['one_month'] = one_month
     df['six_months'] = six_months
-    df.to_pickle(f"./charts/chart_gen/data/{df['ticker'][df.index[0]]}_{formatted_today}.pkl")
+    
+    filename = f'{df['ticker'][df.index[0]]}_{formatted_today}.pkl'
+    filepath = os.path.join(settings.MEDIA_ROOT, 'data', filename)
+    df.to_pickle(filepath)
+    # df.to_pickle(f"./charts/chart_gen/data/{df['ticker'][df.index[0]]}_{formatted_today}.pkl")
     return df
 
 
@@ -102,8 +106,11 @@ def main(ticker_list, group_title, hist_length, interval):
     perf_data_list = []
     for ticker in ticker_list:
         try:
-            performance_data = pd.read_pickle(f'./charts/chart_gen/data/{ticker}_{formatted_today}.pkl')
-            # performance_data = pd.read_picker/
+            file_name = f'data/{ticker}_{formatted_today}.pkl'
+            file_url = settings.MEDIA_URL + f'data/{ticker}_{formatted_today}.pkl'
+            performance_data = pd.read_pickle(file_url)
+
+            # performance_data = pd.read_pickle(f'./charts/chart_gen/data/{ticker}_{formatted_today}.pkl')
             print('File Found')
             # if performance_data['date'][performance_data.index[-1]] < formatted_today:
             #     print('File Outdated')
