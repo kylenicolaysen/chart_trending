@@ -107,7 +107,7 @@ def main(ticker_list, group_title, hist_length, interval):
     for ticker in ticker_list:
         try:
             file_name = f'data/{ticker}_{formatted_today}.pkl'
-            file_url = settings.MEDIA_URL + f'data/{ticker}_{formatted_today}.pkl'
+            file_url = os.path.join(settings.MEDIA_ROOT, 'data', file_name)
             performance_data = pd.read_pickle(file_url)
 
             # performance_data = pd.read_pickle(f'./charts/chart_gen/data/{ticker}_{formatted_today}.pkl')
